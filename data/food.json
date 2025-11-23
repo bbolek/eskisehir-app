@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "name": "Çibörek",
+    "shortInfo": "Eskişehir'in en meşhur yemeği, ince hamur içinde kıymalı kızarmış börek.",
+    "mainText": "Çibörek, Eskişehir mutfağının vazgeçilmez lezzetidir. Tatar kökenli bu yemek, ince hamur içine konulan baharatlı kıyma ile hazırlanır ve tavada kızartılır. Dışı çıtır, içi sulu olan çibörek, genellikle ayran ile servis edilir. Şehrin her yerinde bulunabilir ancak Odunpazarı'ndaki tarihi mekanlar en otantik tatları sunar.",
+    "mainMedia": {
+      "id": "f1",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800",
+      "caption": "Çibörek"
+    },
+    "gallery": [
+      {
+        "id": "fg1",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400",
+        "caption": "Taze pişmiş çibörek"
+      },
+      {
+        "id": "fg2",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1619623376439-b4e86ef2bc27?w=400",
+        "caption": "Çibörek servis"
+      }
+    ],
+    "category": "yemek",
+    "ingredients": ["İnce yufka", "Kıyma", "Soğan", "Baharatlar", "Tuz"]
+  },
+  {
+    "id": "2",
+    "name": "Met Helvası",
+    "shortInfo": "Eskişehir'e özgü, karamelize şekerle yapılan geleneksel tatlı.",
+    "mainText": "Met helvası, Eskişehir'in en ünlü tatlılarından biridir. Un, şeker ve tereyağı kullanılarak yapılan bu özel helva, karamelize şekerin verdiği kendine has bir tat ve kokuya sahiptir. Genellikle ceviz veya fındık ile süslenerek servis edilir. Şehrin tarihi helva üreticilerinden temin edilebilir.",
+    "mainMedia": {
+      "id": "f2",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800",
+      "caption": "Met Helvası"
+    },
+    "gallery": [
+      {
+        "id": "fg3",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=400",
+        "caption": "Met helvası dilimi"
+      },
+      {
+        "id": "fg4",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400",
+        "caption": "Helvacı dükkânı"
+      }
+    ],
+    "category": "tatlı",
+    "ingredients": ["Un", "Şeker", "Tereyağı", "Süt", "Ceviz/Fındık"]
+  },
+  {
+    "id": "3",
+    "name": "Balaban",
+    "shortInfo": "Kıymalı ve sebzeli, tandırda pişirilen özel kebap çeşidi.",
+    "mainText": "Balaban, Eskişehir'e özgü bir kebap çeşididir. Kıyma, patates, domates, biber ve baharatların bir araya gelerek tandırda pişirilmesiyle hazırlanır. Tencere kebabı tarzında servis edilen balaban, soğuk kış günlerinde en çok tercih edilen yemeklerden biridir. Pilav ve ayran ile servis edilir.",
+    "mainMedia": {
+      "id": "f3",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800",
+      "caption": "Balaban"
+    },
+    "gallery": [
+      {
+        "id": "fg5",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=400",
+        "caption": "Tencerede balaban"
+      },
+      {
+        "id": "fg6",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+        "caption": "Balaban servis"
+      }
+    ],
+    "category": "yemek",
+    "ingredients": ["Kıyma", "Patates", "Domates", "Biber", "Soğan", "Baharatlar"]
+  },
+  {
+    "id": "4",
+    "name": "Haşhaşlı Çörek",
+    "shortInfo": "İçi haşhaş ile doldurulmuş, tatlı yumuşak çörek.",
+    "mainText": "Haşhaşlı çörek, Eskişehir'in kahvaltı ve ikramlık sofralarının vazgeçilmezidir. Yumuşak hamuru ve içindeki haşhaş dolgusu ile kendine has bir lezzete sahiptir. Özellikle sabah kahvaltılarında çay ile birlikte tüketilir. Fırınlarda ve pastanelerde taze olarak bulunabilir.",
+    "mainMedia": {
+      "id": "f4",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=800",
+      "caption": "Haşhaşlı Çörek"
+    },
+    "gallery": [
+      {
+        "id": "fg7",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400",
+        "caption": "Taze çörekler"
+      },
+      {
+        "id": "fg8",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=400",
+        "caption": "Kahvaltı sofrasında"
+      }
+    ],
+    "category": "tatlı",
+    "ingredients": ["Un", "Maya", "Süt", "Haşhaş", "Şeker", "Tereyağı"]
+  },
+  {
+    "id": "5",
+    "name": "Eskişehir Kebabı",
+    "shortInfo": "Şehre özgü baharatlarla marine edilmiş kuzu etinden yapılan kebap.",
+    "mainText": "Eskişehir kebabı, özel baharatlarla marine edilmiş kuzu eti kullanılarak hazırlanan bir kebap çeşididir. Mangalda közlenen et, özel sos ve garnitürlerle servis edilir. Şehirdeki kebapçılarda en popüler yemeklerden biridir ve genellikle lavaş ekmeği, közlenmiş sebzeler ve soğan ile servis edilir.",
+    "mainMedia": {
+      "id": "f5",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800",
+      "caption": "Eskişehir Kebabı"
+    },
+    "gallery": [
+      {
+        "id": "fg9",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400",
+        "caption": "Közde kebap"
+      },
+      {
+        "id": "fg10",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400",
+        "caption": "Kebap servis tabağı"
+      }
+    ],
+    "category": "yemek",
+    "ingredients": ["Kuzu eti", "Baharatlar", "Soğan", "Domates", "Biber"]
+  }
+]

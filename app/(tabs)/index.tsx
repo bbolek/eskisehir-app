@@ -1,98 +1,186 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
+import { StyleSheet, ScrollView, View, Pressable } from 'react-native';
+import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+  const colorScheme = useColorScheme();
+  const router = useRouter();
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+  return (
+    <ScrollView style={styles.container}>
+      <ThemedView style={styles.header}>
+        <ThemedText type="title" style={styles.title}>Eskişehir'e Hoş Geldiniz</ThemedText>
+        <ThemedText style={styles.subtitle}>
+          Öğrenciler ve Lületaşı Şehri
         </ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>Eskişehir Hakkında</ThemedText>
+        <ThemedText style={styles.description}>
+          Eskişehir, Türkiye'nin kuzeybatısında yer alan, zengin tarihi, modern şehir planlaması
+          ve dinamik öğrenci nüfusu ile tanınan canlı bir şehirdir. Geleneksel Türk kültürünü
+          çağdaş yaşam tarzıyla mükemmel bir şekilde harmanlayan şehir, her yaştan ziyaretçisine
+          eşsiz deneyimler sunar.
         </ThemedText>
       </ThemedView>
-    </ParallaxScrollView>
+
+      <ThemedView style={styles.highlightsContainer}>
+        <View style={[styles.highlightCard, styles.historyCard]}>
+          <IconSymbol name="building.2.fill" size={40} color="#E57373" />
+          <ThemedText type="defaultSemiBold" style={styles.highlightTitle}>Zengin Tarih</ThemedText>
+          <ThemedText style={styles.highlightText}>
+            Frigler döneminden Osmanlı'ya uzanan antik miras
+          </ThemedText>
+        </View>
+
+        <View style={[styles.highlightCard, styles.modernCard]}>
+          <IconSymbol name="tram.fill" size={40} color="#4FC3F7" />
+          <ThemedText type="defaultSemiBold" style={styles.highlightTitle}>Modern Şehir</ThemedText>
+          <ThemedText style={styles.highlightText}>
+            Avrupa'nın en uzun tramvay hattına sahip çağdaş altyapı
+          </ThemedText>
+        </View>
+
+        <View style={[styles.highlightCard, styles.foodCard]}>
+          <IconSymbol name="fork.knife" size={40} color="#FFB74D" />
+          <ThemedText type="defaultSemiBold" style={styles.highlightTitle}>Yerel Lezzetler</ThemedText>
+          <ThemedText style={styles.highlightText}>
+            Çibörek, met helvası ve balaban ile ünlü mutfak
+          </ThemedText>
+        </View>
+
+        <View style={[styles.highlightCard, styles.cultureCard]}>
+          <IconSymbol name="theatermasks.fill" size={40} color="#81C784" />
+          <ThemedText type="defaultSemiBold" style={styles.highlightTitle}>Sanat ve Kültür</ThemedText>
+          <ThemedText style={styles.highlightText}>
+            Müzeler, tiyatrolar ve geleneksel el sanatlarının evi
+          </ThemedText>
+        </View>
+      </ThemedView>
+
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>Hızlı Bilgiler</ThemedText>
+        <View style={styles.factRow}>
+          <ThemedText type="defaultSemiBold">Nüfus:</ThemedText>
+          <ThemedText> ~900.000</ThemedText>
+        </View>
+        <View style={styles.factRow}>
+          <ThemedText type="defaultSemiBold">Bölge:</ThemedText>
+          <ThemedText> İç Anadolu</ThemedText>
+        </View>
+        <View style={styles.factRow}>
+          <ThemedText type="defaultSemiBold">Rakım:</ThemedText>
+          <ThemedText> Deniz seviyesinden 790m yükseklikte</ThemedText>
+        </View>
+        <View style={styles.factRow}>
+          <ThemedText type="defaultSemiBold">İklim:</ThemedText>
+          <ThemedText> Karasal (sıcak yazlar, soğuk kışlar)</ThemedText>
+        </View>
+      </ThemedView>
+
+      <ThemedView style={styles.section}>
+        <Pressable
+          style={styles.mapButton}
+          onPress={() => router.push('/map-view')}>
+          <IconSymbol name="map.fill" size={24} color="#9575CD" />
+          <ThemedText style={styles.mapButtonText}>Haritada Gör</ThemedText>
+        </Pressable>
+      </ThemedView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+  },
+  header: {
+    padding: 24,
+    paddingTop: 60,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 32,
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    opacity: 0.7,
+    textAlign: 'center',
+  },
+  section: {
+    padding: 20,
+    marginVertical: 8,
+  },
+  sectionTitle: {
+    marginBottom: 12,
+    fontSize: 22,
+  },
+  description: {
+    lineHeight: 24,
+    fontSize: 15,
+  },
+  highlightsContainer: {
+    padding: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  highlightCard: {
+    width: '48%',
+    padding: 16,
+    marginBottom: 16,
+    borderRadius: 12,
+    alignItems: 'center',
+    backgroundColor: 'rgba(128, 128, 128, 0.05)',
+    borderWidth: 2,
+  },
+  historyCard: {
+    borderColor: '#E57373',
+  },
+  modernCard: {
+    borderColor: '#4FC3F7',
+  },
+  foodCard: {
+    borderColor: '#FFB74D',
+  },
+  cultureCard: {
+    borderColor: '#81C784',
+  },
+  highlightTitle: {
+    marginTop: 8,
+    marginBottom: 4,
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  highlightText: {
+    fontSize: 13,
+    textAlign: 'center',
+    opacity: 0.8,
+  },
+  factRow: {
+    flexDirection: 'row',
+    paddingVertical: 6,
+  },
+  mapButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
+    gap: 12,
+    paddingVertical: 16,
+    borderRadius: 12,
+    backgroundColor: 'rgba(128, 128, 128, 0.05)',
+    borderWidth: 2,
+    borderColor: '#9575CD',
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  mapButtonText: {
+    color: '#9575CD',
+    fontSize: 18,
+    fontWeight: '600',
   },
 });

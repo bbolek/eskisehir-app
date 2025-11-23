@@ -1,0 +1,137 @@
+[
+  {
+    "id": "1",
+    "title": "Lületaşı (Meerschaum)",
+    "shortInfo": "Eskişehir'in dünyaca ünlü beyaz altını, sadece bu bölgede çıkarılan özel taş.",
+    "mainText": "Lületaşı, Eskişehir'in en önemli doğal zenginliklerinden biridir. Dünyada sadece bu bölgede çıkarılan bu değerli taş, yumuşak yapısı sayesinde kolayca işlenebilir. Geleneksel olarak pipo yapımında kullanılır ancak günümüzde süs eşyaları, takılar ve dekoratif objeler de üretilmektedir. Atlıhan ve Odunpazarı'nda ustalar tarafından işlenen lületaşı, Eskişehir'in kültürel mirasının önemli bir parçasıdır.",
+    "mainMedia": {
+      "id": "c1",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=800",
+      "caption": "Lületaşı işçiliği"
+    },
+    "gallery": [
+      {
+        "id": "cg1",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=400",
+        "caption": "Lületaşı pipo"
+      },
+      {
+        "id": "cg2",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400",
+        "caption": "Usta işi eserler"
+      }
+    ],
+    "category": "El Sanatları"
+  },
+  {
+    "id": "2",
+    "title": "Odunpazarı Modern Müze (OMM)",
+    "shortInfo": "Çağdaş Türk sanatına adanmış, modern mimarisi ile dikkat çeken müze.",
+    "mainText": "2019 yılında açılan Odunpazarı Modern Müze, ünlü mimar Kengo Kuma tarafından tasarlanmıştır. Geleneksel Odunpazarı evlerinden ilham alan ahşap cephesi ile dikkat çeken müze, çağdaş Türk sanatının en önemli eserlerini sergiler. Erol Akyavaş ve Burhan Doğançay gibi önemli sanatçıların eserlerini barındıran müze, uluslararası sergiler de düzenlemektedir.",
+    "mainMedia": {
+      "id": "c2",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=800",
+      "caption": "OMM dış cephe"
+    },
+    "gallery": [
+      {
+        "id": "cg3",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=400",
+        "caption": "Müze mimarisi"
+      },
+      {
+        "id": "cg4",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=400",
+        "caption": "İç mekan sergi alanı"
+      }
+    ],
+    "category": "Müzeler"
+  },
+  {
+    "id": "3",
+    "title": "Eskişehir Cam Sanatları Müzesi",
+    "shortInfo": "Türkiye'nin ilk çağdaş cam sanatları müzesi.",
+    "mainText": "2007 yılında Odunpazarı'nda açılan Cam Sanatları Müzesi, Türkiye'nin bu alandaki ilk müzesidir. Restore edilmiş tarihi bir binada yer alan müze, geleneksel ve çağdaş cam sanatı eserlerini sergiler. Daimi koleksiyonun yanı sıra yerli ve yabancı sanatçıların eserlerinin yer aldığı geçici sergiler de düzenlenir. Müze içinde cam sanatı atölyeleri de bulunmaktadır.",
+    "mainMedia": {
+      "id": "c3",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800",
+      "caption": "Cam sanatı eserleri"
+    },
+    "gallery": [
+      {
+        "id": "cg5",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=400",
+        "caption": "Cam eserler"
+      },
+      {
+        "id": "cg6",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=400",
+        "caption": "Müze iç mekan"
+      }
+    ],
+    "category": "Müzeler"
+  },
+  {
+    "id": "4",
+    "title": "Yunus Emre",
+    "shortInfo": "13. yüzyıl mutasavvıf şairi, Eskişehir'in manevi değeri.",
+    "mainText": "Yunus Emre, Türk tasavvuf edebiyatının en önemli isimlerinden biridir. Eskişehir'e bağlı Mihalıççık'ta doğduğu kabul edilir. Sevgi, hoşgörü ve insanlık üzerine yazdığı şiirleri yüzyıllar boyunca Türk kültürünü etkilemiştir. 'Yunus Emre Külliyesi' Eskişehir'de anısına yapılmış önemli bir kültür merkezidir. UNESCO tarafından 'Dünya Barışına ve Diyaloga Katkı' ödülü ile onurlandırılmıştır.",
+    "mainMedia": {
+      "id": "c4",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800",
+      "caption": "Yunus Emre anıtı"
+    },
+    "gallery": [
+      {
+        "id": "cg7",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400",
+        "caption": "Yunus Emre Külliyesi"
+      },
+      {
+        "id": "cg8",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1476304884326-cd2c88572c5f?w=400",
+        "caption": "Türbe ve müze"
+      }
+    ],
+    "category": "Tarihi Şahsiyetler"
+  },
+  {
+    "id": "5",
+    "title": "Eskişehir Arkeoloji Müzesi",
+    "shortInfo": "Bölgenin zengin tarihini yansıtan eserlerle dolu müze.",
+    "mainText": "Eskişehir Arkeoloji Müzesi, bölgede yapılan kazılardan elde edilen eserleri sergiler. Frigler, Romalılar ve Bizans dönemlerine ait eserler müzenin koleksiyonunu oluşturur. Özellikle Frigya uygarlığından kalan eserler büyük önem taşır. Müzede ayrıca mozaikler, heykeller, sikkeler ve seramik eserler de bulunmaktadır.",
+    "mainMedia": {
+      "id": "c5",
+      "type": "image",
+      "url": "https://images.unsplash.com/photo-1566127992631-137a642a90f4?w=800",
+      "caption": "Arkeoloji Müzesi"
+    },
+    "gallery": [
+      {
+        "id": "cg9",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1566127992631-137a642a90f4?w=400",
+        "caption": "Antik eserler"
+      },
+      {
+        "id": "cg10",
+        "type": "image",
+        "url": "https://images.unsplash.com/photo-1595391543833-136ac7d8222d?w=400",
+        "caption": "Müze koleksiyonu"
+      }
+    ],
+    "category": "Müzeler"
+  }
+]

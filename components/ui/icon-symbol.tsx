@@ -18,6 +18,13 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'map.fill': 'map',
+  'building.columns.fill': 'account-balance',
+  'fork.knife': 'restaurant',
+  'magnifyingglass': 'search',
+  'building.2.fill': 'domain',
+  'tram.fill': 'tram',
+  'theatermasks.fill': 'theater-comedy',
 } as IconMapping;
 
 /**
