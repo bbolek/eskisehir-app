@@ -1,10 +1,11 @@
-import { StyleSheet, ScrollView, View, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Pressable, ActivityIndicator } from 'react-native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { FoodItem } from '@/types/place';
-import foodData from '@/data/food.json';
+import { getFood } from '@/lib/supabase';
 
 const categoryLabels: Record<string, string> = {
   yemek: 'Yemek',
@@ -14,8 +15,48 @@ const categoryLabels: Record<string, string> = {
 };
 
 export default function FoodScreen() {
-  const items = foodData as FoodItem[];
+  const [items, setItems] = useState<FoodItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    loadFood();
+  }, []);
+
+  async function loadFood() {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await getFood();
+      setItems(data);
+    } catch (err) {
+      setError('Veriler yüklenirken bir hata oluştu');
+      console.error('Error loading food:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (loading) {
+    return (
+      <ThemedView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#E57373" />
+        <ThemedText style={styles.loadingText}>Yükleniyor...</ThemedText>
+      </ThemedView>
+    );
+  }
+
+  if (error) {
+    return (
+      <ThemedView style={styles.errorContainer}>
+        <ThemedText style={styles.errorText}>{error}</ThemedText>
+        <Pressable style={styles.retryButton} onPress={loadFood}>
+          <ThemedText style={styles.retryButtonText}>Tekrar Dene</ThemedText>
+        </Pressable>
+      </ThemedView>
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -42,7 +83,7 @@ export default function FoodScreen() {
                 {item.name}
               </ThemedText>
               <ThemedText style={styles.itemCategory}>
-                {item.category ? categoryLabels[item.category] : ''}
+                {item.category ? categoryLabels[item.category] || item.category : ''}
               </ThemedText>
               <ThemedText style={styles.itemDescription}>
                 {item.shortInfo}
@@ -58,6 +99,39 @@ export default function FoodScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    opacity: 0.7,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  errorText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 16,
+    opacity: 0.7,
+  },
+  retryButton: {
+    backgroundColor: '#E57373',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   header: {
     padding: 24,

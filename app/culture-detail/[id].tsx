@@ -1,21 +1,59 @@
-import { StyleSheet, ScrollView, View, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Pressable, ActivityIndicator } from 'react-native';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { CultureItem, Media } from '@/types/place';
-import cultureData from '@/data/culture.json';
+import { getCultureById } from '@/lib/supabase';
 
 export default function CultureDetailScreen() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
-  const item = (cultureData as CultureItem[]).find((c) => c.id === id);
+  const itemId = typeof id === 'string' ? id : id[0];
 
-  if (!item) {
+  const [item, setItem] = useState<CultureItem | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    loadCultureItem();
+  }, [itemId]);
+
+  async function loadCultureItem() {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await getCultureById(itemId);
+      setItem(data);
+    } catch (err) {
+      setError('Veri yüklenirken bir hata oluştu');
+      console.error('Error loading culture item:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (loading) {
     return (
-      <ThemedView style={styles.container}>
-        <ThemedText>İçerik bulunamadı</ThemedText>
+      <ThemedView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#FFB74D" />
+        <ThemedText style={styles.loadingText}>Yükleniyor...</ThemedText>
+      </ThemedView>
+    );
+  }
+
+  if (error || !item) {
+    return (
+      <ThemedView style={styles.errorContainer}>
+        <Pressable style={styles.backButtonError} onPress={() => router.back()}>
+          <IconSymbol name="chevron.left" size={24} color="#000" />
+        </Pressable>
+        <ThemedText style={styles.errorText}>{error || 'İçerik bulunamadı'}</ThemedText>
+        <Pressable style={styles.retryButton} onPress={loadCultureItem}>
+          <ThemedText style={styles.retryButtonText}>Tekrar Dene</ThemedText>
+        </Pressable>
       </ThemedView>
     );
   }
@@ -104,6 +142,50 @@ export default function CultureDetailScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    opacity: 0.7,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  backButtonError: {
+    position: 'absolute',
+    top: 50,
+    left: 16,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(128, 128, 128, 0.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  errorText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 16,
+    opacity: 0.7,
+  },
+  retryButton: {
+    backgroundColor: '#FFB74D',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   headerContainer: {
     position: 'relative',

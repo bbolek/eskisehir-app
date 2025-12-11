@@ -18,6 +18,7 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'chevron.left': 'chevron-left',
   'map.fill': 'map',
   'building.columns.fill': 'account-balance',
   'fork.knife': 'restaurant',
@@ -25,6 +26,12 @@ const MAPPING = {
   'building.2.fill': 'domain',
   'tram.fill': 'tram',
   'theatermasks.fill': 'theater-comedy',
+  'heart': 'favorite-border',
+  'heart.fill': 'favorite',
+  'play.circle.fill': 'play-circle-filled',
+  'mappin.circle.fill': 'location-on',
+  'xmark.circle.fill': 'cancel',
+  'questionmark.circle': 'help-outline',
 } as IconMapping;
 
 /**

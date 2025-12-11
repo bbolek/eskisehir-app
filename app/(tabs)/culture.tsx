@@ -1,14 +1,55 @@
-import { StyleSheet, ScrollView, View, Pressable } from 'react-native';
+import { StyleSheet, ScrollView, View, Pressable, ActivityIndicator } from 'react-native';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { CultureItem } from '@/types/place';
-import cultureData from '@/data/culture.json';
+import { getCulture } from '@/lib/supabase';
 
 export default function CultureScreen() {
-  const items = cultureData as CultureItem[];
+  const [items, setItems] = useState<CultureItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    loadCulture();
+  }, []);
+
+  async function loadCulture() {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await getCulture();
+      setItems(data);
+    } catch (err) {
+      setError('Veriler yüklenirken bir hata oluştu');
+      console.error('Error loading culture:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (loading) {
+    return (
+      <ThemedView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#FFB74D" />
+        <ThemedText style={styles.loadingText}>Yükleniyor...</ThemedText>
+      </ThemedView>
+    );
+  }
+
+  if (error) {
+    return (
+      <ThemedView style={styles.errorContainer}>
+        <ThemedText style={styles.errorText}>{error}</ThemedText>
+        <Pressable style={styles.retryButton} onPress={loadCulture}>
+          <ThemedText style={styles.retryButtonText}>Tekrar Dene</ThemedText>
+        </Pressable>
+      </ThemedView>
+    );
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -51,6 +92,39 @@ export default function CultureScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    opacity: 0.7,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  errorText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 16,
+    opacity: 0.7,
+  },
+  retryButton: {
+    backgroundColor: '#FFB74D',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   header: {
     padding: 24,

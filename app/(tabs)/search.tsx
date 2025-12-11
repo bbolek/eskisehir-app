@@ -1,15 +1,13 @@
-import { StyleSheet, ScrollView, View, Pressable, TextInput } from 'react-native';
+import { StyleSheet, ScrollView, View, Pressable, TextInput, ActivityIndicator } from 'react-native';
 import { Image } from 'expo-image';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { Place, CultureItem, FoodItem } from '@/types/place';
-import placesData from '@/data/places.json';
-import cultureData from '@/data/culture.json';
-import foodData from '@/data/food.json';
+import { getPlaces, getCulture, getFood } from '@/lib/supabase';
 
 type SearchResult = {
   id: string;
@@ -22,14 +20,39 @@ type SearchResult = {
 
 export default function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [places, setPlaces] = useState<Place[]>([]);
+  const [culture, setCulture] = useState<CultureItem[]>([]);
+  const [food, setFood] = useState<FoodItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
   const colorScheme = useColorScheme();
 
-  const places = placesData as Place[];
-  const culture = cultureData as CultureItem[];
-  const food = foodData as FoodItem[];
+  useEffect(() => {
+    loadAllData();
+  }, []);
 
-  const getAllResults = (): SearchResult[] => {
+  async function loadAllData() {
+    try {
+      setLoading(true);
+      setError(null);
+      const [placesData, cultureData, foodData] = await Promise.all([
+        getPlaces(),
+        getCulture(),
+        getFood(),
+      ]);
+      setPlaces(placesData);
+      setCulture(cultureData);
+      setFood(foodData);
+    } catch (err) {
+      setError('Veriler yüklenirken bir hata oluştu');
+      console.error('Error loading search data:', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const getAllResults = useCallback((): SearchResult[] => {
     const results: SearchResult[] = [];
 
     places.forEach((place) => {
@@ -66,7 +89,7 @@ export default function SearchScreen() {
     });
 
     return results;
-  };
+  }, [places, culture, food]);
 
   const searchResults = searchQuery
     ? getAllResults().filter((item) =>
@@ -100,6 +123,26 @@ export default function SearchScreen() {
         return '';
     }
   };
+
+  if (loading) {
+    return (
+      <ThemedView style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#4FC3F7" />
+        <ThemedText style={styles.loadingText}>Yükleniyor...</ThemedText>
+      </ThemedView>
+    );
+  }
+
+  if (error) {
+    return (
+      <ThemedView style={styles.errorContainer}>
+        <ThemedText style={styles.errorText}>{error}</ThemedText>
+        <Pressable style={styles.retryButton} onPress={loadAllData}>
+          <ThemedText style={styles.retryButtonText}>Tekrar Dene</ThemedText>
+        </Pressable>
+      </ThemedView>
+    );
+  }
 
   return (
     <ThemedView style={styles.container}>
@@ -186,6 +229,39 @@ export default function SearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 12,
+    fontSize: 16,
+    opacity: 0.7,
+  },
+  errorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  errorText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 16,
+    opacity: 0.7,
+  },
+  retryButton: {
+    backgroundColor: '#4FC3F7',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   header: {
     padding: 20,
