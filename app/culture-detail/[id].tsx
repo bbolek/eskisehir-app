@@ -7,6 +7,7 @@ import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { CultureItem, Media } from '@/types/place';
 import { getCultureById } from '@/lib/supabase';
+import * as Sentry from '@sentry/react-native';
 
 export default function CultureDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -25,11 +26,21 @@ export default function CultureDetailScreen() {
     try {
       setLoading(true);
       setError(null);
+      Sentry.addBreadcrumb({
+        category: 'navigation',
+        message: `Loading culture detail: ${itemId}`,
+        level: 'info',
+      });
       const data = await getCultureById(itemId);
       setItem(data);
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError('Veri yüklenirken bir hata oluştu');
       console.error('Error loading culture item:', err);
+      Sentry.captureException(err, {
+        tags: { screen: 'CultureDetailScreen', action: 'loadCultureItem' },
+        extra: { itemId, errorMessage },
+      });
     } finally {
       setLoading(false);
     }

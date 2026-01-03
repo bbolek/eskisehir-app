@@ -7,6 +7,7 @@ import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { FoodItem, Media } from '@/types/place';
 import { getFoodById } from '@/lib/supabase';
+import * as Sentry from '@sentry/react-native';
 
 const categoryLabels: Record<string, string> = {
   yemek: 'Yemek',
@@ -32,11 +33,21 @@ export default function FoodDetailScreen() {
     try {
       setLoading(true);
       setError(null);
+      Sentry.addBreadcrumb({
+        category: 'navigation',
+        message: `Loading food detail: ${itemId}`,
+        level: 'info',
+      });
       const data = await getFoodById(itemId);
       setItem(data);
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError('Veri yüklenirken bir hata oluştu');
       console.error('Error loading food item:', err);
+      Sentry.captureException(err, {
+        tags: { screen: 'FoodDetailScreen', action: 'loadFoodItem' },
+        extra: { itemId, errorMessage },
+      });
     } finally {
       setLoading(false);
     }

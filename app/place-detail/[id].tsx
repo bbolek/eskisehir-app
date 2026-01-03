@@ -8,6 +8,7 @@ import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import * as Sentry from '@sentry/react-native';
 
 export default function PlaceDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -27,11 +28,21 @@ export default function PlaceDetailScreen() {
     try {
       setLoading(true);
       setError(null);
+      Sentry.addBreadcrumb({
+        category: 'navigation',
+        message: `Loading place detail: ${placeId}`,
+        level: 'info',
+      });
       const data = await getPlaceById(placeId);
       setPlace(data);
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError('Veri yüklenirken bir hata oluştu');
       console.error('Error loading place:', err);
+      Sentry.captureException(err, {
+        tags: { screen: 'PlaceDetailScreen', action: 'loadPlace' },
+        extra: { placeId, errorMessage },
+      });
     } finally {
       setLoading(false);
     }

@@ -6,6 +6,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { CultureItem } from '@/types/place';
 import { getCulture } from '@/lib/supabase';
+import * as Sentry from '@sentry/react-native';
 
 export default function CultureScreen() {
   const [items, setItems] = useState<CultureItem[]>([]);
@@ -21,11 +22,21 @@ export default function CultureScreen() {
     try {
       setLoading(true);
       setError(null);
+      Sentry.addBreadcrumb({
+        category: 'navigation',
+        message: 'Loading culture screen',
+        level: 'info',
+      });
       const data = await getCulture();
       setItems(data);
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError('Veriler yüklenirken bir hata oluştu');
       console.error('Error loading culture:', err);
+      Sentry.captureException(err, {
+        tags: { screen: 'CultureScreen', action: 'loadCulture' },
+        extra: { errorMessage },
+      });
     } finally {
       setLoading(false);
     }

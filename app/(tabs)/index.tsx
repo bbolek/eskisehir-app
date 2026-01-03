@@ -1,9 +1,9 @@
-import { StyleSheet, ScrollView, View, Pressable } from 'react-native';
-import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useRouter } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
@@ -41,7 +41,7 @@ export default function HomeScreen() {
           <IconSymbol name="tram.fill" size={40} color="#4FC3F7" />
           <ThemedText type="defaultSemiBold" style={styles.highlightTitle}>Modern Şehir</ThemedText>
           <ThemedText style={styles.highlightText}>
-            Avrupa'nın en uzun tramvay hattına sahip çağdaş altyapı
+            Eğitim düzeyi, gençliği, çağdaş altyapı ve sanayi
           </ThemedText>
         </View>
 

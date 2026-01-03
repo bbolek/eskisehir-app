@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(eas credentials:*)",
+      "Bash(keytool -list -v -keystore:*)"
+    ]
+  }
+}

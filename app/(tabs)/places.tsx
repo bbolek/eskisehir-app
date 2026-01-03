@@ -6,6 +6,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Place } from '@/types/place';
 import { getPlaces } from '@/lib/supabase';
+import * as Sentry from '@sentry/react-native';
 
 export default function PlacesScreen() {
   const [places, setPlaces] = useState<Place[]>([]);
@@ -21,11 +22,21 @@ export default function PlacesScreen() {
     try {
       setLoading(true);
       setError(null);
+      Sentry.addBreadcrumb({
+        category: 'navigation',
+        message: 'Loading places screen',
+        level: 'info',
+      });
       const data = await getPlaces();
       setPlaces(data);
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError('Veriler yüklenirken bir hata oluştu');
       console.error('Error loading places:', err);
+      Sentry.captureException(err, {
+        tags: { screen: 'PlacesScreen', action: 'loadPlaces' },
+        extra: { errorMessage },
+      });
     } finally {
       setLoading(false);
     }

@@ -2,8 +2,8 @@ import { CultureItem, FoodItem, Media, Place } from '@/types/place';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 // Supabase configuration
-const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.EXPO_PUBLIC_ESK_SUPABASE_URL;
+const supabaseAnonKey = process.env.EXPO_PUBLIC_ESK_SUPABASE_ANON_KEY;
 
 // Check if Supabase is configured
 const isSupabaseConfigured = supabaseUrl && supabaseAnonKey &&
