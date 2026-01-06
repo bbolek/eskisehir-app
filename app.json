@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "4",
+      "buildNumber": "6",
       "bundleIdentifier": "com.bbolek.eskisehirguide",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
@@ -18,7 +18,7 @@
     },
     "android": {
       "package": "com.bbolek.eskisehirguide",
-      "versionCode": 4,
+      "versionCode": 6,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

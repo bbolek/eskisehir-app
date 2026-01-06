@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, View, Pressable, ActivityIndicator } from 'react-native';
+import { StyleSheet, ScrollView, View, Pressable, ActivityIndicator, Linking, Alert } from 'react-native';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
@@ -46,6 +46,19 @@ export default function CultureDetailScreen() {
     }
   }
 
+  const handleVideoPress = async (videoUrl: string) => {
+    try {
+      await Linking.openURL(videoUrl);
+    } catch (err) {
+      console.error('Error opening video:', err);
+      Alert.alert('Hata', 'Video açılırken bir sorun oluştu.');
+      Sentry.captureException(err, {
+        tags: { screen: 'CultureDetailScreen', action: 'handleVideoPress' },
+        extra: { videoUrl },
+      });
+    }
+  };
+
   if (loading) {
     return (
       <ThemedView style={styles.loadingContainer}>
@@ -73,14 +86,16 @@ export default function CultureDetailScreen() {
     if (media.type === 'video') {
       return (
         <View key={index} style={styles.galleryItem}>
-          <Image
-            source={{ uri: media.thumbnail || media.url }}
-            style={styles.galleryImage}
-            contentFit="cover"
-          />
-          <View style={styles.playButton}>
-            <IconSymbol name="play.circle.fill" size={40} color="#FFF" />
-          </View>
+          <Pressable onPress={() => handleVideoPress(media.url)}>
+            <Image
+              source={{ uri: media.thumbnail || media.url }}
+              style={styles.galleryImage}
+              contentFit="cover"
+            />
+            <View style={styles.playButton}>
+              <IconSymbol name="play.circle.fill" size={40} color="#FFF" />
+            </View>
+          </Pressable>
           {media.caption && (
             <ThemedText style={styles.mediaCaption}>{media.caption}</ThemedText>
           )}
