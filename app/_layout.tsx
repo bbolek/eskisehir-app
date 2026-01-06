@@ -2,6 +2,8 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
+import { useEffect } from 'react';
+import * as Updates from 'expo-updates';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { FavoritesProvider } from '@/contexts/FavoritesContext';
@@ -41,6 +43,30 @@ export const unstable_settings = {
 
 export default Sentry.wrap(function RootLayout() {
   const colorScheme = useColorScheme();
+
+  useEffect(() => {
+    async function checkForUpdates() {
+      if (__DEV__) {
+        return; // Skip updates check in development
+      }
+
+      try {
+        const update = await Updates.checkForUpdateAsync();
+
+        if (update.isAvailable) {
+          await Updates.fetchUpdateAsync();
+          await Updates.reloadAsync();
+        }
+      } catch (err) {
+        console.error('Error checking for updates:', err);
+        Sentry.captureException(err, {
+          tags: { feature: 'ota-updates', action: 'checkForUpdates' },
+        });
+      }
+    }
+
+    checkForUpdates();
+  }, []);
 
   return (
     <FavoritesProvider>

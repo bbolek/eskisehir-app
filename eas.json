@@ -6,6 +6,7 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
+      "channel": "development",
       "env": {
         "SENTRY_AUTH_TOKEN": "@SENTRY_AUTH_TOKEN"
       }
@@ -13,13 +14,15 @@
     "preview": {
       "android": {
         "buildType": "apk"
-      }
+      },
+      "channel": "preview"
     },
     "production": {
       "android": {
         "buildType": "app-bundle",
         "credentialsSource": "local"
       },
+      "channel": "production",
       "env": {
         "SENTRY_AUTH_TOKEN": "@SENTRY_AUTH_TOKEN",
         "EXPO_PUBLIC_SUPABASE_URL": "https://caydpbejahdjpqesghay.supabase.co",
@@ -29,5 +32,8 @@
   },
   "submit": {
     "production": {}
+  },
+  "update": {
+    "channel": "production"
   }
 }
