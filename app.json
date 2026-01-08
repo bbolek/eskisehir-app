@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "buildNumber": "6",
+      "buildNumber": "9",
       "bundleIdentifier": "com.bbolek.eskisehirguide",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
@@ -18,7 +18,7 @@
     },
     "android": {
       "package": "com.bbolek.eskisehirguide",
-      "versionCode": 6,
+      "versionCode": 9,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -26,7 +26,12 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBAAc3gUM6atvCiLQkIXEZEChSA0ewwi4w"
+        }
+      }
     },
     "web": {
       "output": "static",
@@ -66,7 +71,8 @@
       }
     },
     "updates": {
-      "url": "https://u.expo.dev/f8443b30-7b00-47b8-babb-a7c9ebfb6555"
+      "url": "https://u.expo.dev/f8443b30-7b00-47b8-babb-a7c9ebfb6555",
+      
     },
     "runtimeVersion": {
       "policy": "appVersion"

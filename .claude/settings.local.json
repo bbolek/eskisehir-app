@@ -3,7 +3,8 @@
     "allow": [
       "Bash(eas credentials:*)",
       "Bash(keytool -list -v -keystore:*)",
-      "Bash(npx expo install:*)"
+      "Bash(npx expo install:*)",
+      "Bash(move appmap-view.tsx appmap-view.native.tsx)"
     ]
   }
 }

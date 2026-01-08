@@ -1,8 +1,3 @@
-// This file is a fallback and should not be used directly.
-// Platform-specific implementations are in:
-// - map-view.native.tsx (for iOS and Android)
-// - map-view.web.tsx (for web)
-
 import { StyleSheet, View, Pressable } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/themed-text';
@@ -26,7 +21,7 @@ export default function MapViewScreen() {
 
       <View style={styles.messageContainer}>
         <ThemedText style={styles.messageText}>
-          Harita özelliği bu platformda kullanılamıyor.
+          Harita özelliği sadece mobil uygulamada kullanılabilir.
         </ThemedText>
       </View>
     </ThemedView>

@@ -19,7 +19,7 @@ export async function getPlaces(): Promise<PlaceWithMedia[]> {
   const { data, error } = await supabase
     .from('places_with_media')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return data || [];
@@ -47,7 +47,7 @@ export async function getPlacesByCategory(category: string): Promise<PlaceWithMe
     .from('places_with_media')
     .select('*')
     .eq('category', category)
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return data || [];
@@ -60,7 +60,7 @@ export async function getCulture(): Promise<CultureWithMedia[]> {
   const { data, error } = await supabase
     .from('culture_with_media')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return data || [];
@@ -88,7 +88,7 @@ export async function getCultureByCategory(category: string): Promise<CultureWit
     .from('culture_with_media')
     .select('*')
     .eq('category', category)
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return data || [];
@@ -101,7 +101,7 @@ export async function getFood(): Promise<FoodWithMedia[]> {
   const { data, error } = await supabase
     .from('food_with_media')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return data || [];
@@ -129,7 +129,7 @@ export async function getFoodByCategory(category: string): Promise<FoodWithMedia
     .from('food_with_media')
     .select('*')
     .eq('category', category)
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return data || [];
@@ -176,15 +176,18 @@ export async function search(query: string): Promise<{
     supabase
       .from('places_with_media')
       .select('*')
-      .or(`name.ilike.${searchTerm},short_info.ilike.${searchTerm},main_text.ilike.${searchTerm}`),
+      .or(`name.ilike.${searchTerm},short_info.ilike.${searchTerm},main_text.ilike.${searchTerm}`)
+      .order('sort_order', { ascending: true }),
     supabase
       .from('culture_with_media')
       .select('*')
-      .or(`title.ilike.${searchTerm},short_info.ilike.${searchTerm},main_text.ilike.${searchTerm}`),
+      .or(`title.ilike.${searchTerm},short_info.ilike.${searchTerm},main_text.ilike.${searchTerm}`)
+      .order('sort_order', { ascending: true }),
     supabase
       .from('food_with_media')
       .select('*')
-      .or(`name.ilike.${searchTerm},short_info.ilike.${searchTerm},main_text.ilike.${searchTerm}`),
+      .or(`name.ilike.${searchTerm},short_info.ilike.${searchTerm},main_text.ilike.${searchTerm}`)
+      .order('sort_order', { ascending: true }),
   ]);
 
   return {

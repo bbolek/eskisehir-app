@@ -19,7 +19,7 @@ export default function HomeScreen() {
       </ThemedView>
 
       <ThemedView style={styles.section}>
-        <ThemedText type="subtitle" style={styles.sectionTitle}>Eskişehir Hakkında</ThemedText>
+        <ThemedText type="subtitle" style={styles.sectionTitle}>Eskişehir Haakkında</ThemedText>
         <ThemedText style={styles.description}>
           Eskişehir, Türkiye'nin kuzeybatısında yer alan, zengin tarihi, modern şehir planlaması
           ve dinamik öğrenci nüfusu ile tanınan canlı bir şehirdir. Geleneksel Türk kültürünü

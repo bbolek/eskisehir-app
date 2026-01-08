@@ -158,7 +158,7 @@ export async function getPlaces(): Promise<Place[]> {
   const { data, error } = await client
     .from('places_with_media')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return (data || []).map(transformPlace);
@@ -190,7 +190,7 @@ export async function getCulture(): Promise<CultureItem[]> {
   const { data, error } = await client
     .from('culture_with_media')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return (data || []).map(transformCulture);
@@ -222,7 +222,7 @@ export async function getFood(): Promise<FoodItem[]> {
   const { data, error } = await client
     .from('food_with_media')
     .select('*')
-    .order('created_at', { ascending: false });
+    .order('sort_order', { ascending: true });
 
   if (error) throw error;
   return (data || []).map(transformFood);
@@ -261,15 +261,18 @@ export async function searchAll(query: string): Promise<{
     client
       .from('places_with_media')
       .select('*')
-      .or(`name.ilike.${searchPattern},short_info.ilike.${searchPattern},main_text.ilike.${searchPattern}`),
+      .or(`name.ilike.${searchPattern},short_info.ilike.${searchPattern},main_text.ilike.${searchPattern}`)
+      .order('sort_order', { ascending: true }),
     client
       .from('culture_with_media')
       .select('*')
-      .or(`title.ilike.${searchPattern},short_info.ilike.${searchPattern},main_text.ilike.${searchPattern}`),
+      .or(`title.ilike.${searchPattern},short_info.ilike.${searchPattern},main_text.ilike.${searchPattern}`)
+      .order('sort_order', { ascending: true }),
     client
       .from('food_with_media')
       .select('*')
-      .or(`name.ilike.${searchPattern},short_info.ilike.${searchPattern},main_text.ilike.${searchPattern}`),
+      .or(`name.ilike.${searchPattern},short_info.ilike.${searchPattern},main_text.ilike.${searchPattern}`)
+      .order('sort_order', { ascending: true }),
   ]);
 
   return {
