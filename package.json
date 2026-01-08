@@ -12,8 +12,7 @@
     "android-publish": "eas build --platform android",
     "android-publish-local": "cd android && ./gradlew app:bundleRelease",
     "ios-publish": "eas build --platform ios",
-    "update": "eas update --auto --platform android",
-    "update:production": "eas update --channel production --platform android --message",
+    "update": "eas update --channel production --platform android --message",
     "update:preview": "eas update --channel preview --platform android --message"
   },
   "dependencies": {
